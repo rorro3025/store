@@ -1,9 +1,13 @@
-import Layout from "../components/Layout"; 
+import Layout from "../components/Layout";
+import Popular from "../components/PopularProducts";
+
 function Home() {
-   return (
-     <Layout >
-      <h1>Index page</h1> 
-     </Layout>
+    return (
+        <Layout>
+            <div className="container">
+              <Popular />
+            </div>
+        </Layout>
     );
 }
 

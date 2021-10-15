@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { FaShoppingBag } from "react-icons/fa";
+import { AiOutlineUser } from "react-icons/ai";
+
 function Header() {
   return (
     <div className="logo">
@@ -10,20 +13,45 @@ function Header() {
       <div className="row">
         <div className="container ">
           <div className="text-center">
-            <Link href="/">
-              <a className="btn btn-primary">Hombre</a>
+            <Link href="/men">
+              <a className="btn btn-primary btn-sm mx-1">Hombre</a>
+            </Link>
+            <Link href="/woman">
+              <a className="btn btn-primary btn-sm mx-1">Mujer</a>
             </Link>
             <Link href="/">
-              <a className="btn btn-primary">Mujer</a>
+              <a className="btn btn-primary btn-sm mx-1">Pago y envio</a>
             </Link>
             <Link href="/">
-              <a className="btn btn-primary">Acerca de nosotros</a>
+              <a className={"btn btn-primary btn-sm mx-1"}>Contacto</a>
             </Link>
           </div>
-          <div className="text-end">
-            <button className="btn btn-danger">carrito</button>
-            <button className="btn btn-danger">cuenta</button>
-          </div>
+
+          <ul className="nav justify-content-end">
+            <li className="nav-item">
+              <Link href="/account">
+                <a className="nav-link">
+                  <h2>
+                    <AiOutlineUser />
+                  </h2>
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link href="/">
+                <a className="nav-link">
+                  <h2>
+                    <FaShoppingBag />
+                  </h2>
+                  <h5>
+                    <span className="position-absolute top-2 start-90 badge rounded-pill bg-danger">
+                      0
+                    </span>
+                  </h5>
+                </a>
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
 
