@@ -19,5 +19,6 @@ const auth = getAuth();
 const db = getFirestore();
 const dbName = "Users";
 const collectionUsed = collection(db, dbName);
+const collectionProducts = collection (db,"Products")
 
-export { auth, db, dbName, collectionUsed };
+export { auth, db, dbName, collectionUsed, collectionProducts };

@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "Name": "Dundee",
+    "Description": "boots for women",
+    "Price": 50.33,
+    "Size": "2.5 - 7",
+    "Stock": 10,
+    "Src": "img/boots_1.jpeg"
+  },
+  {
+    "Id": 1,
+    "Name": "Sylvia",
+    "Description": "Artesanal de cuero natural",
+    "Price": 60.33,
+    "Size": "2.5 - 7",
+    "Stock": 14,
+    "Src": "img/boots_1.jpeg"
+  },
+  {
+    "Id": 1,
+    "Name": "Edith",
+    "Description": "snake skin",
+    "Price": 30.0,
+    "Size": "2.5 - 7",
+    "Stock": 10,
+    "Src": "img/boots_1.jpeg"
+  },
+  {
+    "Id": 1,
+    "Name": "Chelsea",
+    "Description": "natural skin",
+    "Price": 77.9,
+    "Size": "2.5 - 7",
+    "Stock": 9,
+    "Src": "img/boots_1.jpeg"
+  }
+]

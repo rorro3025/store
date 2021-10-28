@@ -6,8 +6,19 @@ function Layout({ children }) {
   return (
     <div>
       <Header />
-      {children}
+      <div className="page-content">
+        {children}
+      </div>
       <Footer />
+      <style jsx>
+        {
+          `{ 
+          .page-content{
+            min-height:700px;
+          }
+        }`
+        }
+      </style>
     </div>
   );
 }

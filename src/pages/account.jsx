@@ -1,19 +1,19 @@
-import SingUp from "../components/SingUp";
 import Layout from "../components/Layout";
 import UserInfo from "../components/UserInfo";
-import { useState } from "react";
+import Select from "../components/selectExists"
+import { useUser } from "../context/shopContext"
 
-function account() {
-  const [session, setSession] = useState(false);
+function Account() {
+  const { session, setSession } = useUser();
   return (
     <Layout>
       {session ? (
         <UserInfo setUserAccount={setSession} />
       ) : (
-        <SingUp setUserAccount={setSession} />
+        <Select />
       )}
     </Layout>
   );
 }
 
-export default account;
+export default Account;

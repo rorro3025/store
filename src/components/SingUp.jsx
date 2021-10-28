@@ -2,8 +2,7 @@ import { GiConverseShoe } from "react-icons/gi";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
-import { db, dbName } from "../fireconfig";
-import { auth } from "../fireconfig";
+import { db, dbName,auth } from "../fireconfig";
 import { doc, setDoc } from "firebase/firestore";
 import {
   signInWithPopup,
@@ -11,10 +10,11 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useRouter } from "next/router";
-import { async } from "@firebase/util";
+import { useUser } from "../context/shopContext"
 
-function SingUp({ setUserAccount }) {
+function SingUp(  ) {
   // * use of object provider from firebase and instance for other imports
+  const { setSession } = useUser()
   const provider = new GoogleAuthProvider();
   const { push } = useRouter();
   const initialState = {
@@ -22,7 +22,7 @@ function SingUp({ setUserAccount }) {
     email: "",
     lastName: "",
     telephone: "",
-    photoURL:"img/userGen.png",
+    photoURL: "img/userGen.png",
     password: "",
     passwordConfirmation: "",
   };
@@ -34,7 +34,7 @@ function SingUp({ setUserAccount }) {
     signInWithPopup(auth, provider)
       .then((result) => {
         console.log(result.user);
-        setUserAccount(true);
+        setSession(true);
       })
       .catch((error) => console.log(error.code, error.message));
   };
@@ -50,7 +50,7 @@ function SingUp({ setUserAccount }) {
           console.log(user.uid);
           console.log(userInfo);
           await setDoc(doc(db, dbName, user.uid), userInfo)
-            .then(() => setUserAccount(true))
+            .then(() => setSession(true))
             .catch((error) => console.log(error.message));
         })
         .catch((error) => console.log(error.code));
@@ -147,7 +147,7 @@ function SingUp({ setUserAccount }) {
           </label>
         </div>
         <div className="d-grid gap-2">
-          <input type="submit" className={"btn btn-info"} value="Sing up" />
+          <input type="submit" className={"btn btn-primary"} value="Sing up" />
           <button
             className={"btn btn-danger"}
             type="button"
@@ -157,7 +157,7 @@ function SingUp({ setUserAccount }) {
             Sing in
           </button>
           <button
-            className={"btn btn-primary"}
+            className={"btn btn-info"}
             type="button"
             onClick={handleFacebook}
           >
