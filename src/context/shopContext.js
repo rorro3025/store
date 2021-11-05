@@ -11,10 +11,12 @@ export const ShopProvider = ({ children }) => {
     let initialState = false
     if (user) initialState = true
     const [session, setSession] = useState(initialState)
-    const [shoppingList,setShoppingList]= useState([{id:"1a"}])
+    const [shoppingList,setShoppingList]= useState([])
+    const updateShoppingList = (id,name,description,price,uuid) => setShoppingList([...shoppingList,{id,name,description,price,uuid}])
+    const deleteItemList = (id) => setShoppingList(shoppingList.filter((item)=>item.uuid !== id))
 
     return (
-        <ShopContext.Provider value={{ session, setSession,shoppingList,setShoppingList }}>
+        <ShopContext.Provider value={{ session, setSession,shoppingList,updateShoppingList,deleteItemList }}>
             {children}
         </ShopContext.Provider>
     )

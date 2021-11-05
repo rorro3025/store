@@ -46,7 +46,7 @@ function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/">
+              <Link href="/bag">
                 <a className="nav-link">
                   <h2>
                     <FaShoppingBag />

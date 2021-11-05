@@ -32,6 +32,8 @@ function Woman() {
                     src={item.Src}
                     description={item.Description}
                     id={item.id}
+                    stock={item.Stock}
+                    price={item.Price}
                   />
                 </div>
               ))}

@@ -1,4 +1,5 @@
 import "bootswatch/dist/journal/bootstrap.min.css";
+import 'react-toastify/dist/ReactToastify.css'
 import { ShopProvider } from "../context/shopContext"
 
 
