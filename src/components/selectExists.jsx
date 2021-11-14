@@ -3,9 +3,12 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai"
 import { FaHouseUser } from "react-icons/fa"
 import SingUp from "../components/SingUp"
 import SingIn from "../components/SingIn"
+import AlertError from "./errorMsg";
 
 function SelectType() {
     const [userExits, setUserExist] = useState(false)
+    const [msg,setMsg] = useState ("")
+    const [msgVisible,setMsgVisible] = useState (false)
     const handleClickExist = () => {
         setUserExist(true)
         console.log("existente", userExits)
@@ -36,7 +39,8 @@ function SelectType() {
             </div>
             <div className="row">
                 <div className="container">
-                    {userExits ? <SingIn /> : <SingUp />}
+                    {userExits ? <SingIn setMessage={setMsg} setVisible={setMsgVisible}/> : <SingUp setMessage={setMsg} setVisible={setMsgVisible}/>}
+                    <AlertError message={msg} visible={msgVisible} />
                 </div>
             </div>
             <style jsx>

@@ -1,19 +1,11 @@
 import Layout from "../components/Layout";
 import UserInfo from "../components/UserInfo";
-import Select from "../components/selectExists"
-import { useUser } from "../context/shopContext"
+import Select from "../components/selectExists";
+import { useUser } from "../context/shopContext";
 
 function Account() {
-  const { session, setSession } = useUser();
-  return (
-    <Layout>
-      {session ? (
-        <UserInfo setUserAccount={setSession} />
-      ) : (
-        <Select />
-      )}
-    </Layout>
-  );
+  const { session } = useUser();
+  return <Layout>{session ? <UserInfo /> : <Select />}</Layout>;
 }
 
 export default Account;

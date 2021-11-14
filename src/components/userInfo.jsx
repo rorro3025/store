@@ -1,26 +1,20 @@
-import React from "react";
-import { auth } from "../fireconfig";
-import { signOut } from "firebase/auth";
-import { db, dbName } from "../fireconfig";
+import { useState, useEffect } from "react";
+import { auth, db, dbName } from "../fireconfig";
 import { doc, getDoc } from "firebase/firestore";
-import { useState } from "react";
-import { useEffect } from "react";
+import ShopHistory from "../components/History";
+import UserCard from "../components/cardInfo";
 
-function UserInfo({ setUserAccount }) {
+function UserInfo() {
   const initialState = {
+    id: "",
     name: "",
     email: "",
     lastName: "",
     photoURL: "",
-    telephone: "",
+    telephone: [],
+    address: [],
   };
   const [userCurrentInfo, setCurrentUserInfo] = useState(initialState);
-  const handleSingOut = () => {
-    signOut(auth)
-      .then(() => setUserAccount(false))
-      .catch((err) => console.log(err.message));
-  };
-
   const user = auth.currentUser;
 
   const getInfo = async (id) => {
@@ -29,20 +23,22 @@ function UserInfo({ setUserAccount }) {
     if (docSnap.exists()) {
       let data = docSnap.data();
       setCurrentUserInfo({
-        name: data.name ? data.name : "no definido",
-        email: data.email ? data.email : "no definido",
-        lastName: data.lastName ? data.lastName : "no definido",
-        telephone: data.telephone ? data.telephone : "no definido",
+        id:id,
+        name: data.name ? data.name : "undefined",
+        email: data.email ? data.email : "undefined",
+        lastName: data.lastName ? data.lastName : "undefined",
+        telephone: data.telephone ? data.telephone : ["undefined"],
         photoURL: data.photoURL ? data.photoURL : "img/userGen.png",
+        address: data.address ? data.address : ["undefined"]
       });
       console.log("Document data:", docSnap.data());
     } else {
       // doc.data() will be undefined in this case
       setCurrentUserInfo({
-        name: user.displayName ? user.displayName : "no definido",
-        email: user.email ? user.email : "no definido",
+        name: user.displayName ? user.displayName : "undefined",
+        email: user.email ? user.email : "undefined",
         lastName: "",
-        telephone: user.phoneNumber ? user.phoneNumber : "no definido",
+        telephone: user.phoneNumber ? user.phoneNumber : ["undefined"],
         photoURL: user.photoURL ? user.photoURL : "img/userGen.png",
       });
       console.log("No such document!");
@@ -51,8 +47,7 @@ function UserInfo({ setUserAccount }) {
 
   useEffect(() => {
     if (user) {
-      console.log(user.displayName, user.email, user.phoneNumber, user.uid);
-      getInfo(user.uid);
+      getInfo(user.uid).then(()=>console.log("sing in")).catch(error=>console.log(error.message));
     } else {
       console.log("something went wrong");
     }
@@ -61,59 +56,8 @@ function UserInfo({ setUserAccount }) {
     <div className="container mt-3 pt-3">
       <h1>Bienvenido</h1>
       <div className="container">
-        <div className="row">
-          <div className="col-sm-3 text-center">
-            <img
-              src={userCurrentInfo.photoURL}
-              alt="userPhoto"
-              width="125px"
-              className="border border-3 border-danger rounded-circle"
-            />
-            <br />
-            <button
-              type="button"
-              className="btn btn-danger my-2"
-              onClick={handleSingOut}
-            >
-              Sing out
-            </button>
-          </div>
-          <div className="col-sm-7">
-            <div className="panel">
-              <div className="panel-body">
-                <h4 className="text-center">
-                  <strong>
-                    {userCurrentInfo.name} {userCurrentInfo.lastName}
-                  </strong>
-                </h4>
-                <strong>Email: </strong>
-                {userCurrentInfo.email} <br />
-                <strong>Telefono: </strong>
-                {userCurrentInfo.telephone}
-                <br />
-                <strong>Ubicación:</strong>
-                {userCurrentInfo.ubicacion ? "direccion" : "no direccion yet"}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row mt-3">
-          <div className="col">
-            <h3>History</h3>
-            <table className="table table-primary table-hover">
-              <thead>
-                <th scope="col">Producto</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Fecha</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <th colSpan="3">No history yet</th>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <UserCard user={userCurrentInfo} />
+        <ShopHistory />
       </div>
     </div>
   );
