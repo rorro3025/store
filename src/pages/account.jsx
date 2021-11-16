@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import UserInfo from "../components/UserInfo";
+import UserInfo from "../components/userInfo";
 import Select from "../components/selectExists";
 import { useUser } from "../context/shopContext";
 

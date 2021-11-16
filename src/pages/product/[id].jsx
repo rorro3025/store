@@ -3,17 +3,12 @@ import Layout from "../../components/Layout";
 import { db } from "../../fireconfig";
 import { doc, getDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
-import {toast} from "react-toastify"
 import {useUser} from "../../context/shopContext"
 
 function ItemDescription() {
   const { push, query } = useRouter();
-  const {updateShoppingList} = useUser()
-  const handleBuy = (id, name, description, price) => {
-    let uuid = new Date().getTime();
-    updateShoppingList(id, name, description, price, uuid);
-    toast(name + " added to cart");
-  };
+  const {handleAddToCard} = useUser()
+
   const initialState = {
     id:"",
     Name: "",
@@ -66,7 +61,7 @@ function ItemDescription() {
             >
               Return
             </button>
-            <button className="btn btn-primary my-3 mx-2" onClick={(()=>handleBuy(productInfo.id,productInfo.Name, productInfo.Description, productInfo.Price))}>add</button>
+            <button className="btn btn-primary my-3 mx-2" onClick={(()=>handleAddToCard(productInfo.id,productInfo.Name, productInfo.Description, productInfo.Price,productInfo.Src,productInfo.Stock))}>add</button>
           </div>
         </div>
       </div>

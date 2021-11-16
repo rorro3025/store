@@ -1,17 +1,25 @@
 import {FcShop} from "react-icons/fc"
 import {TiDelete} from "react-icons/ti"
 import {useUser} from "../context/shopContext"
-function ItemResumePay({name, description, price,itemPosition,id}) {
-  const {deleteItemList} = useUser();
+
+function ItemResumePay({name, description, price, itemPosition, id,src,stock}) {
+    const {deleteItemList} = useUser();
     return (
         <div className="card text-white bg-primary mb-3 tile">
             <div className="card-header d-flex justify-content-between">
-                 <div><FcShop/>{name}-{itemPosition}</div> <div><TiDelete  onClick={()=>deleteItemList(itemPosition)} /></div></div>
-            <div className={"card-body"}>
-                Product description: {description}
-                <br/>
-                Price per unit: {price}
-                barcode: {id}
+                <div><h4><FcShop/>--<strong>{name}</strong></h4></div>
+                <div><TiDelete onClick={() => deleteItemList(itemPosition)}/></div>
+            </div>
+            <div className={"card-body d-flex"}>
+                <img src={`/img/${src}`} alt={name} className={"border border-4 border-danger rounded-circle"}
+                     width="100px"/>
+                <div className={"mx-3"}>
+                    <strong>Product description:</strong> {description}
+                    <br/>
+                    <strong>Price per unit:</strong> {price}
+                    <br/>
+                    <strong>barcode:</strong> {id}
+                </div>
             </div>
             <style jsx>
                 {`{

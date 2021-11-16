@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { db } from "../fireconfig";
 import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import {toast} from "react-toastify"
 
 function MiniForm({ visible, setVisible, id, concept, type }) {
-  let docRefForm = doc(db, "Users", id);
   const [newInfo, setNewInfo] = useState("");
   const handleChange = ({ target }) => setNewInfo(target.value);
   const updateInfo = async () => {
+    let docRefForm = doc(db, "Users", id);
     await updateDoc(docRefForm, { [concept]: arrayUnion(newInfo) });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
     updateInfo().then(() => {
-      toast.info("Added successfuly")
+      toast.info("Added successfully")
       setNewInfo("");
       setVisible(false);
     });
@@ -22,7 +22,6 @@ function MiniForm({ visible, setVisible, id, concept, type }) {
     setNewInfo("");
     setVisible(false);
   };
-
   return (
     <div className={visible ? "d-flex mt-3" : "visually-hidden"}>
       <form onSubmit={handleSubmit} className="d-flex">

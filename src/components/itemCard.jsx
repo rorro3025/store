@@ -1,15 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import { toast } from "react-toastify";
 import { useUser } from "../context/shopContext";
 
 function ProductCardItem({ name, description, src, id, stock, price }) {
-  const { updateShoppingList } = useUser();
-  const handleBuy = (id, name, description, price) => {
-    let uuid = new Date().getTime();
-    updateShoppingList(id, name, description, price, uuid);
-    toast(name + " added to cart");
-  };
+  const { handleAddToCard } = useUser();
 
   return (
     <div className="card tile">
@@ -22,7 +16,7 @@ function ProductCardItem({ name, description, src, id, stock, price }) {
         </Link>
         <button
           className="btn btn-secondary m-2"
-          onClick={() => handleBuy(id, name, description, price)}
+          onClick={() => handleAddToCard(id, name, description, price,src,stock )}
         >
           Add
         </button>

@@ -4,17 +4,19 @@ import ItemResumePay from "../components/ItemResumePay"
 
 function Bag() {
     const {shoppingList} = useUser();
-    let account = shoppingList.reduce((total, item)=>total+item.price,0)
+    let account = shoppingList.reduce((total, item) => total + item.price, 0)
     console.log(account)
 
     return (
         <Layout>
             <div className="container mt-3">
-                <h2 className="text-center">Shopping  list</h2>
+                <h2 className="text-center">Shopping list</h2>
                 <div className="row mt-3">
                     <div className="col-md-8">
                         {shoppingList.map((item) => (
-                           <ItemResumePay name={item.name} price={item.price} description={item.description} itemPosition={item.uuid} id={item.id} key={item.uuid} />
+                            <ItemResumePay name={item.name} price={item.price} description={item.description}
+                                           itemPosition={item.uuid} id={item.id} src={item.src} stock={item.stock}
+                                           key={item.uuid}/>
                         ))}
                     </div>
                     <div className="col-md-auto">

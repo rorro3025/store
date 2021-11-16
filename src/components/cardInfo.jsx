@@ -52,13 +52,13 @@ function CardInfo({ user }) {
             >
               Add
             </button>
-            {/*<MiniForm
+            <MiniForm
               visible={showPhone}
               setVisible={setShowPhone}
               id={user.id}
               concept="telephone"
               type="number"
-            />*/}
+            />
             <br />
             <strong>Ubicación:</strong>
             <ul>
@@ -71,13 +71,13 @@ function CardInfo({ user }) {
             >
               Add
             </button>
-            {/*<MiniForm
+            <MiniForm
               visible={showAddress}
               setVisible={setShowAddress}
               id={user.id}
               concept="address"
               type="text"
-            />*/}
+            />
           </div>
         </div>
       </div>
