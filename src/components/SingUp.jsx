@@ -20,7 +20,7 @@ function SingUp({setMessage, setVisible}) {
         email: "",
         lastName: "",
         telephone: "",
-        photoURL: "img/userGen.png",
+        photoURL: "img/userGen.webp",
         password: "",
         passwordConfirmation: "",
     };

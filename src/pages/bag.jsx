@@ -20,7 +20,7 @@ function Bag() {
                         ))}
                     </div>
                     <div className="col-md-auto">
-                        <h3>Total $ {account.toPrecision(6)} </h3>
+                        <h3>Total $ {account.toFixed(2)} </h3>
                         <div className="d-grid gap-2">
                             <button className="btn btn-success">Pay now</button>
                         </div>

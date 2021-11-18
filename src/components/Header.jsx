@@ -31,7 +31,7 @@ function Header() {
             <Link href="/payAndSend">
               <a className="btn btn-primary btn-sm mx-1">Pago y envio</a>
             </Link>
-            <Link href="/">
+            <Link href="/contact">
               <a className={"btn btn-primary btn-sm mx-1"}>Contacto</a>
             </Link>
           </div>
