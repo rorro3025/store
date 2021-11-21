@@ -1,30 +1,48 @@
+import Link from "next/link"
 function Popular() {
   return (
     <div className="container text-center">
       <div className="position-relative text-center overflow-hidden mt-4">
-        <img src="img/zapatos_4.jpeg" height={"420px"} width={"1000px"} />
+         <Link href={"/product/aRQB5RDhyJd3i88A51dd"}>
+             <a>
+                 <img src="img/zapatos_4.webp" height={"420px"} width={"1000px"} alt={"item-banner"} className={"border border-4 border-primary"} />
+             </a>
+         </Link>
       </div>
       <div className="row mt-3 justify-content-center">
         <div className="col-md-auto mt-2">
-          <img
-            src="img/zapatos_1.jpeg"
-            width={"300px"}
-            className="border border-4 border-primary"
-          />
+         <Link href={"/product/Pohx6jDu1RHTei73vcs3"}>
+             <a>
+                 <img
+                     src="img/zapatos_1.webp"
+                     width={"300px"}
+                     className="border border-4 border-primary"
+                     alt={"popular-1"}
+                 />
+             </a>
+         </Link>
         </div>
         <div className="col-md-auto mt-2">
-          <img
-            src="img/zapatos_2.jpeg"
-            width={"300px"}
-            className="border border-4 border-primary"
-          />
+         <Link href="/product/VhcYDmp4rXKPsKGnYj80">
+             <a >
+                 <img
+                     src="img/zapatos_2.webp"
+                     width={"300px"}
+                     className="border border-4 border-primary"
+                 />
+             </a>
+         </Link>
         </div>
         <div className="col-md-auto mt-2">
-          <img
-            src="img/zapatos_3.jpeg"
-            width={"300px"}
-            className="border border-4 border-primary"
-          />
+          <Link href="/product/MHdifUhYdaOSltc8vfeD">
+              <a >
+                  <img
+                      src="img/zapatos_3.webp"
+                      width={"300px"}
+                      className="border border-4 border-primary"
+                  />
+              </a>
+          </Link>
         </div>
       </div>
       <div className={"mt-3 tex-center"}>

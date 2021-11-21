@@ -13,7 +13,7 @@ export const ShopProvider = ({children}) => {
     if (user) initialState = true
     const [session, setSession] = useState(initialState)
     const [shoppingList, setShoppingList] = useState([])
-    const updateShoppingList = (id, name, description, price, uuid, src,stock) => setShoppingList([...shoppingList, {
+    const updateShoppingList = (id, name, description, price, uuid, src, stock) => setShoppingList([...shoppingList, {
         id,
         name,
         description,
@@ -23,14 +23,14 @@ export const ShopProvider = ({children}) => {
         stock,
     }])
     const deleteItemList = (id) => setShoppingList(shoppingList.filter((item) => item.uuid !== id))
-    const handleAddToCard = (id, name, description, price, src,stock) => {
+    const handleAddToCard = (id, name, description, price, src, stock) => {
         let uuid = new Date().getTime();
         updateShoppingList(id, name, description, price, uuid, src, stock)
         toast(name + " added to cart");
     }
-
+    const getSubtotal = () => shoppingList.reduce((total, item) => total + item.price, 0)
     return (
-        <ShopContext.Provider value={{session, setSession, shoppingList, handleAddToCard, deleteItemList}}>
+        <ShopContext.Provider value={{session, setSession, shoppingList, handleAddToCard, deleteItemList, getSubtotal}}>
             {children}
         </ShopContext.Provider>
     )
