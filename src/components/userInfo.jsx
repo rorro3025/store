@@ -57,7 +57,7 @@ function UserInfo() {
       <h1>Bienvenido</h1>
       <div className="container">
         <UserCard user={userCurrentInfo} />
-        <ShopHistory />
+        {userCurrentInfo.id !== "" &&<ShopHistory uid={userCurrentInfo.id}/> }
       </div>
     </div>
   );

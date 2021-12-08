@@ -6,7 +6,7 @@ import ItemResumePay from "../components/ItemResumePay"
 import Head from "next/head"
 
 function Bag() {
-    const {shoppingList, getSubtotal} = useUser();
+    const {shoppingList, session} = useUser();
     const [confirmed, setConfirmed] = useState(false)
     let amount = shoppingList.reduce((total, item) => total + item.price, 0)
     //let account = shoppingList.reduce((total, item) => total + item.price, 0)
@@ -21,8 +21,7 @@ function Bag() {
         <Layout>
             <Head>
                 <title>Bag</title>
-                <script
-                    src="https://www.paypal.com/sdk/js?client-id=AdhZgg5imO91CYczWGUQmhNNOva1fCQL1Qk1uLVqqpClsLTzPrM2sA2qiD_wf2uc2uFbb8n7lFA9alhg"></script>
+                <script defer src="https://www.paypal.com/sdk/js?client-id=AdhZgg5imO91CYczWGUQmhNNOva1fCQL1Qk1uLVqqpClsLTzPrM2sA2qiD_wf2uc2uFbb8n7lFA9alhg&currency=MXN"></script>
             </Head>
             <div className="container mt-3">
                 <h2 className="text-center">Shopping list</h2>
@@ -38,7 +37,7 @@ function Bag() {
                     <div className="col-md-auto">
                         <h3>Total $ {amount.toFixed(2)} </h3>
                         <div className="d-grid gap-2">
-                            <button className="btn btn-success" onClick={handleConfirm} disabled={amount === 0}>Confirm
+                            <button className="btn btn-success" onClick={handleConfirm} disabled={amount === 0 || !session}>Confirm
                                 order
                             </button>
                             <button className="btn btn-danger" onClick={handleCancel}

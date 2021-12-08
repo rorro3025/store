@@ -10,7 +10,12 @@ export const ShopProvider = ({children}) => {
 
     const user = auth.currentUser;
     let initialState = false
-    if (user) initialState = true
+    let uuid = ""
+    if (user){
+        initialState = true
+        uuid = user.uid
+    }
+    const [uid, setUid] = useState(uuid)
     const [session, setSession] = useState(initialState)
     const [shoppingList, setShoppingList] = useState([])
     const updateShoppingList = (id, name, description, price, uuid, src, stock) => setShoppingList([...shoppingList, {
@@ -28,9 +33,10 @@ export const ShopProvider = ({children}) => {
         updateShoppingList(id, name, description, price, uuid, src, stock)
         toast(name + " added to cart");
     }
+    const clearAllItems = () => setShoppingList([])
     const getSubtotal = () => shoppingList.reduce((total, item) => total + item.price, 0)
     return (
-        <ShopContext.Provider value={{session, setSession, shoppingList, handleAddToCard, deleteItemList, getSubtotal}}>
+        <ShopContext.Provider value={{session, setSession,uid,setUid, shoppingList,clearAllItems, handleAddToCard, deleteItemList, getSubtotal}}>
             {children}
         </ShopContext.Provider>
     )

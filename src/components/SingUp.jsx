@@ -27,12 +27,21 @@ function SingUp({setMessage, setVisible}) {
     const [userInfo, setUserInfo] = useState(initialState);
     // * end of constructors
     //? methods for connect firebase and user accounts
+    const createHystory = async (uid) =>{
+        let model ={
+            type:"new user",
+            items:[]
+        }
+        await setDoc(doc(db,"shopHistory", uid), model)
+    }
     const handleGoogle = () => {
         console.log("google");
         signInWithPopup(auth, provider)
             .then((result) => {
-                console.log(result.user);
-                setSession(true);
+                let credencial = result.user
+                console.log(credencial);
+                createHystory(credencial.uid).then(()=>setSession(true))
+
             })
             .catch((error) => console.log(error.code, error.message));
     };
@@ -52,7 +61,10 @@ function SingUp({setMessage, setVisible}) {
                     }
                     console.log(model);
                     await setDoc(doc(db, dbName, user.uid), model)
-                        .then(() => setSession(true))
+                        .then(() => {
+                            createHystory(user.uid);
+                            setSession(true)
+                        })
                         .catch((error) => console.log(error.message));
                 })
                 .catch((error) => {
